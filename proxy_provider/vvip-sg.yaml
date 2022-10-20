@@ -1,0 +1,16 @@
+proxies:
+name: 🇸🇬OVH AKRAB 1A 17-11
+    server: 104.26.5.10
+    port: 443
+    type: vmess
+    uuid: 6188e5f8-5795-439d-b0b5-be16788e9bbe
+    alterId: 0
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    network: ws
+    ws-opts:
+      path: /serverssh.net
+      headers:
+        Host: sgm1ray.serverssh.net
+    udp: true

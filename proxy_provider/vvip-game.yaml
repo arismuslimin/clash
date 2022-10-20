@@ -1,0 +1,16 @@
+proxies:
+- name: 🇮🇩IKD2 AKRAB 1A 17-11
+    server: 104.26.5.10
+    port: 443
+    type: vmess
+    uuid: 24311cb2-a934-41fc-b293-a185880a72fa
+    alterId: 0
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    network: ws
+    ws-opts:
+      path: /v2ray
+      headers:
+        Host: ikd2.vpn-akcelluler.my.id
+    udp: true
