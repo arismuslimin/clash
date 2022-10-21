@@ -95,7 +95,7 @@ proxies:
     alterId: 0
     cipher: auto
     tls: true
-    sni:sgm1ray.serverssh.net
+    sni: sgm1ray.serverssh.net
     skip-cert-verify: true
     network: ws
     ws-opts:
