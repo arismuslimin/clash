@@ -1,0 +1,129 @@
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+tproxy-port: 7895
+ipv6: false
+mode: rule
+log-level: silent
+allow-lan: true
+external-controller: 0.0.0.0:9090
+secret: ""
+bind-address: "*"
+unified-delay: true
+profile:
+  store-selected: true
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: redir-host
+  listen: 127.0.0.1:7874
+  nameserver:
+    - 1.1.1.1
+    - 8.8.8.8
+  fallback:
+    - 1.0.0.1
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.google/dns-query
+  default-nameserver:
+    - 1.1.1.1
+    - 8.8.8.8
+proxies:
+  - name: IDC1 AKRAB 1A 19-11
+    server: 104.26.5.10
+    port: 443
+    type: trojan
+    password: idc117okt
+    sni: idc1.vpn-akcelluler.my.id
+    skip-cert-verify: true
+    network: ws
+    ws-opts:
+      path: /trojango
+      headers:
+        Host: idc1.vpn-akcelluler.my.id
+    udp: true
+  - name: IDC1 KUOTA UTAMA HABIS 19-11
+    server: idc1.vpn-akcelluler.my.id
+    port: 443
+    type: trojan
+    password: idc117okt
+    sni: maps.gstatic.com
+    skip-cert-verify: true
+    network: ws
+    ws-opts:
+      path: /trojango
+      headers:
+        Host: maps.gstatic.com
+    udp: true
+  - name: IDNUSA2 AKRAB 1A 19-11
+    server: 104.26.5.10
+    port: 443
+    type: vmess
+    uuid: fc9c12e0-f4f2-4fc4-a30e-fc488bac7121
+    alterId: 0
+    cipher: auto
+    tls: true
+    sni: idnusa2.vpn-akcelluler.my.id
+    skip-cert-verify: true
+    network: ws
+    ws-opts:
+      path: /v2ray
+      headers:
+        Host: idnusa2.vpn-akcelluler.my.id
+    udp: true
+  - name: IDNUSA2 KUOTA UTAMA HABIS 19-11
+    server: idnusa2.vpn-akcelluler.my.id
+    port: 443
+    type: vmess
+    uuid: fc9c12e0-f4f2-4fc4-a30e-fc488bac7121
+    alterId: 0
+    cipher: auto
+    tls: true
+    sni: idnusa2.vpn-akcelluler.my.id
+    skip-cert-verify: true
+    network: ws
+    ws-opts:
+      path: /v2ray
+      headers:
+        Host: idnusa2.vpn-akcelluler.my.id
+    udp: true
+  - name: SGO AKRAB 1A 17-11
+    server: 104.26.5.10
+    port: 443
+    type: vmess
+    uuid: 6188e5f8-5795-439d-b0b5-be16788e9bbe
+    alterId: 0
+    cipher: auto
+    tls: true
+    sni:sgm1ray.serverssh.net
+    skip-cert-verify: true
+    network: ws
+    ws-opts:
+      path: /serverssh.net
+      headers:
+        Host: sgm1ray.serverssh.net
+    udp: true
+proxy-groups:
+  - name: GLOBALSSH-ELITETUNNEL
+    type: select
+    proxies:
+      - IDC1 AKRAB 1A 19-11
+      - IDC1 KUOTA UTAMA HABIS 19-11
+      - IDNUSA2 AKRAB 1A 19-11
+      - IDNUSA2 KUOTA UTAMA HABIS 19-11
+      - SGO AKRAB 1A 17-11
+      - BEST-PING
+      - DIRECT
+  - name: BEST-PING
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 5
+    proxies:
+      - IDC1 AKRAB 1A 19-11
+      - IDC1 KUOTA UTAMA HABIS 19-11
+      - IDNUSA2 AKRAB 1A 19-11
+      - IDNUSA2 KUOTA UTAMA HABIS 19-11
+      - SGO AKRAB 1A 17-11
+rules:
+  - MATCH,GLOBALSSH-ELITETUNNEL
