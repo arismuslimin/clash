@@ -29,11 +29,11 @@ dns:
     - 1.1.1.1
     - 8.8.8.8
 proxies:
-  - name: 🇮🇩MSA5 AKRAB 6 23-12
+  - name: 🇮🇩MSA5 AKRAB 6 24JAN
     server: akrab6.v-pn.my.id
     port: 443
     type: vmess
-    uuid: 0751e028-2837-472c-b884-1e2cf937223f
+    uuid: 8cacb087-20cf-4d0d-b87d-30cb48c565a7
     alterId: 0
     cipher: auto
     tls: true
@@ -44,11 +44,11 @@ proxies:
       headers:
         Host: msa5.vpn-akcelluler.my.id
     udp: true
-  - name: 🇮🇩MSA5 AKRAB 1S 23-12
+  - name: 🇮🇩MSA5 AKRAB 1S 24JAN
     server: msa5.vpn-akcelluler.my.id
     port: 443
     type: vmess
-    uuid: 0751e028-2837-472c-b884-1e2cf937223f
+    uuid: 8cacb087-20cf-4d0d-b87d-30cb48c565a7
     alterId: 0
     cipher: auto
     tls: true
@@ -60,11 +60,11 @@ proxies:
       headers:
         Host: msa5.vpn-akcelluler.my.id
     udp: true
-  - name: 🇮🇩IDC4 AKRAB 6 23-12
+  - name: 🇮🇩IDC4 AKRAB 6 24JAN
     server: akrab6.v-pn.my.id
     port: 443
     type: trojan
-    password: idc4stb23nov
+    password: idc4087834856375
     sni: idc4.vpn-akcelluler.my.id
     skip-cert-verify: true
     network: ws
@@ -73,12 +73,12 @@ proxies:
       headers:
         Host: idc4.vpn-akcelluler.my.id
     udp: true
-  - name: 🇮🇩IDC4 AKRAB 1S 23-12
-    server: idc4.vpn-akcelluler.my.id
+  - name: 🇮🇩IDC4 AKRAB 6S 24JAN
+    server: akrab6.v-pn.my.id
     port: 443
     type: trojan
-    password: idc4stb23nov
-    sni: kh.google.com
+    password: idc4087834856375
+    sni: idc4.vpn-akcelluler.my.id
     skip-cert-verify: true
     network: ws
     ws-opts:
@@ -86,31 +86,31 @@ proxies:
       headers:
         Host: idc4.vpn-akcelluler.my.id
     udp: true
-  - name: 🇸🇬OVH AKRAB 6 22-12
+  - name: 🇸🇬OVH AKRAB 6 CADANGAN
     server: akrab6.v-pn.my.id
     port: 443
     type: vmess
-    uuid: 88684e7a-8a65-4cb2-9b5a-27f52bbd0783
+    uuid: 3e7db632-601e-441e-a002-3c88a42506b0
     alterId: 0
     cipher: auto
     tls: true
-    sni: sgm1ray.serverssh.net
+    sni: sgm1ray.serverip.my.id
     skip-cert-verify: true
     network: ws
     ws-opts:
       path: /serverssh.net
       headers:
-        Host: sgm1ray.serverssh.net
+        Host: sgm1ray.serverip.my.id
     udp: true
 proxy-groups:
   - name: GLOBAL
     type: select
     proxies:
-      - 🇮🇩MSA5 AKRAB 6 23-12
-      - 🇮🇩MSA5 AKRAB 1S 23-12
-      - 🇮🇩IDC4 AKRAB 6 23-12
-      - 🇮🇩IDC4 AKRAB 1S 23-12
-      - 🇸🇬OVH AKRAB 6 22-12
+      - 🇮🇩MSA5 AKRAB 6 24JAN
+      - 🇮🇩MSA5 AKRAB 1S 24JAN
+      - 🇮🇩IDC4 AKRAB 6 24JAN
+      - 🇮🇩IDC4 AKRAB 6S 24JAN
+      - 🇸🇬OVH AKRAB 6 CADANGAN
       - BEST-PING
       - DIRECT
   - name: BEST-PING
@@ -119,10 +119,10 @@ proxy-groups:
     interval: 300
     tolerance: 5
     proxies:
-      - 🇮🇩MSA5 AKRAB 6 23-12
-      - 🇮🇩MSA5 AKRAB 1S 23-12
-      - 🇮🇩IDC4 AKRAB 6 23-12
-      - 🇮🇩IDC4 AKRAB 1S 23-12
-      - 🇸🇬OVH AKRAB 6 22-12
+      - 🇮🇩MSA5 AKRAB 6 24JAN
+      - 🇮🇩MSA5 AKRAB 1S 24JAN
+      - 🇮🇩IDC4 AKRAB 6 24JAN
+      - 🇮🇩IDC4 AKRAB 6S 24JAN
+      - 🇸🇬OVH AKRAB 6 CADANGAN
 rules:
   - MATCH,GLOBAL
