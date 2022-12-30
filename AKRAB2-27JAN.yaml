@@ -1,0 +1,127 @@
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+tproxy-port: 7895
+ipv6: false
+mode: rule
+log-level: silent
+allow-lan: true
+external-controller: 0.0.0.0:9090
+secret: ""
+bind-address: "*"
+unified-delay: true
+profile:
+  store-selected: true
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: redir-host
+  listen: 127.0.0.1:7874
+  nameserver:
+    - 1.1.1.1
+    - 8.8.8.8
+  fallback:
+    - 1.0.0.1
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.google/dns-query
+  default-nameserver:
+    - 1.1.1.1
+    - 8.8.8.8
+proxies:
+  - name: 🇮🇩MSA5 AKRAB 2 27JAN
+    server: akrab2.v-pn.my.id
+    port: 443
+    type: vmess
+    uuid: 6579304c-a857-4547-ba69-0fdcec509765
+    alterId: 0
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    network: ws
+    ws-opts:
+      path: /v2ray
+      headers:
+        Host: msa5.vpn-akcelluler.my.id
+    udp: true
+  - name: 🇮🇩MSA5 AKRAB 7 27JAN
+    server: akrab7.v-pn.my.id
+    port: 443
+    type: vmess
+    uuid: 6579304c-a857-4547-ba69-0fdcec509765
+    alterId: 0
+    cipher: auto
+    tls: true
+    sni: msa5.vpn-akcelluler.my.id
+    skip-cert-verify: true
+    network: ws
+    ws-opts:
+      path: /v2ray
+      headers:
+        Host: msa5.vpn-akcelluler.my.id
+    udp: true
+  - name: 🇮🇩IDC4 AKRAB 2 27JAN
+    server: akrab2.v-pn.my.id
+    port: 443
+    type: trojan
+    password: idc4081934121781
+    sni: idc4.vpn-akcelluler.my.id
+    skip-cert-verify: true
+    network: ws
+    ws-opts:
+      path: /trojango
+      headers:
+        Host: idc4.vpn-akcelluler.my.id
+    udp: true
+  - name: 🇮🇩IDC4 AKRAB 7 27JAN
+    server: akrab7.v-pn.my.id
+    port: 443
+    type: trojan
+    password: idc4081934121781
+    sni: idc4.vpn-akcelluler.my.id
+    skip-cert-verify: true
+    network: ws
+    ws-opts:
+      path: "/trojango"
+      headers:
+        Host: idc4.vpn-akcelluler.my.id
+    udp: true
+  - name: 🇸🇬OVH AKRAB 2 CADANGAN
+    server: akrab2.v-pn.my.id
+    port: 443
+    type: vmess
+    uuid: 2da190dc-3055-4d6c-952e-16ab8851f578
+    alterId: 0
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    network: ws
+    ws-opts:
+      path: /serverssh.net
+      headers:
+        Host: sgm1ray.serverip.my.id
+    udp: true
+proxy-groups:
+  - name: GLOBAL
+    type: select
+    proxies:
+      - 🇮🇩MSA5 AKRAB 2 27JAN
+      - 🇮🇩MSA5 AKRAB 7 27JAN
+      - 🇮🇩IDC4 AKRAB 2 27JAN
+      - 🇮🇩IDC4 AKRAB 7 27JAN
+      - 🇸🇬OVH AKRAB 2 CADANGAN
+      - BEST-PING
+      - DIRECT
+  - name: BEST-PING
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 5
+    proxies:
+      - 🇮🇩MSA5 AKRAB 2 27JAN
+      - 🇮🇩MSA5 AKRAB 7 27JAN
+      - 🇮🇩IDC4 AKRAB 2 27JAN
+      - 🇮🇩IDC4 AKRAB 7 27JAN
+      - 🇸🇬OVH AKRAB 2 CADANGAN
+rules:
+  - MATCH,GLOBAL
