@@ -1,0 +1,128 @@
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+tproxy-port: 7895
+ipv6: false
+mode: rule
+log-level: silent
+allow-lan: true
+external-controller: 0.0.0.0:9090
+secret: ""
+bind-address: "*"
+unified-delay: true
+profile:
+  store-selected: true
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: redir-host
+  listen: 127.0.0.1:7874
+  nameserver:
+    - 1.1.1.1
+    - 8.8.8.8
+  fallback:
+    - 1.0.0.1
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.google/dns-query
+  default-nameserver:
+    - 1.1.1.1
+    - 8.8.8.8
+proxies:
+  - name: 🇮🇩MSA AKRAB 6 12FEB
+    server: akrab6.v-pn.my.id
+    port: 443
+    type: vmess
+    uuid: 6c23c1db-21d9-4847-acea-74816d4967c1
+    alterId: 0
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    network: ws
+    ws-opts:
+      path: /v2ray
+      headers:
+        Host: msa.vpn-akcelluler.my.id
+    udp: true
+  - name: 🇮🇩MSA AKRAB 1S 12FEB
+    server: msa.vpn-akcelluler.my.id
+    port: 443
+    type: vmess
+    uuid: 6c23c1db-21d9-4847-acea-74816d4967c1
+    alterId: 0
+    cipher: auto
+    tls: true
+    sni: kh.google.com
+    skip-cert-verify: true
+    network: ws
+    ws-opts:
+      path: /v2ray
+      headers:
+        Host: msa.vpn-akcelluler.my.id
+    udp: true
+  - name: 🇮🇩IDC1 AKRAB 6 12FEB
+    server: akrab6.v-pn.my.id
+    port: 443
+    type: trojan
+    password: stb085937068732
+    sni: idc1.vpn-akcelluler.my.id
+    skip-cert-verify: true
+    network: ws
+    ws-opts:
+      path: /trojango
+      headers:
+        Host: idc1.vpn-akcelluler.my.id
+    udp: true
+  - name: 🇮🇩IDC1 AKRAB 1 12FEB
+    server: akrab1.v-pn.my.id
+    port: 443
+    type: trojan
+    password: stb085937068732
+    sni: idc1.vpn-akcelluler.my.id
+    skip-cert-verify: true
+    network: ws
+    ws-opts:
+      path: /trojango
+      headers:
+        Host: idc1.vpn-akcelluler.my.id
+    udp: true
+  - name: 🇸🇬OVH AKRAB 6 CADANGAN
+    server: akrab6.v-pn.my.id
+    port: 443
+    type: vmess
+    uuid: 62c64087-73f0-495f-a169-95941519c897
+    alterId: 0
+    cipher: auto
+    tls: true
+    sni: sgm1ray.serverip.my.id
+    skip-cert-verify: true
+    network: ws
+    ws-opts:
+      path: /serverssh.net
+      headers:
+        Host: sgm1ray.serverip.my.id
+    udp: true
+proxy-groups:
+  - name: GLOBAL
+    type: select
+    proxies:
+      - 🇮🇩MSA AKRAB 6 12FEB
+      - 🇮🇩MSA AKRAB 1S 12FEB
+      - 🇮🇩IDC1 AKRAB 6 12FEB
+      - 🇮🇩IDC1 AKRAB 1 12FEB
+      - 🇸🇬OVH AKRAB 6 CADANGAN
+      - BEST-PING
+      - DIRECT
+  - name: BEST-PING
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 5
+    proxies:
+      - 🇮🇩MSA AKRAB 6 12FEB
+      - 🇮🇩MSA AKRAB 1S 12FEB
+      - 🇮🇩IDC1 AKRAB 6 12FEB
+      - 🇮🇩IDC1 AKRAB 1 12FEB
+      - 🇸🇬OVH AKRAB 6 CADANGAN
+rules:
+  - MATCH,GLOBAL
